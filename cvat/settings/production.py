@@ -11,9 +11,9 @@ INSTALLED_APPS += [
 ]
 
 for key in RQ_QUEUES:
-    RQ_QUEUES[key]['HOST'] = 'cvat_redis'
+    RQ_QUEUES[key]['HOST'] = os.getenv('REDIS_HOST')
 
-CACHEOPS_REDIS['host'] = 'cvat_redis'
+CACHEOPS_REDIS['host'] = os.getenv('REDIS_HOST')
 
 # Django-sendfile:
 # https://github.com/johnsensible/django-sendfile
@@ -25,9 +25,9 @@ SENDFILE_BACKEND = 'sendfile.backends.xsendfile'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST': 'cvat_db',
-        'NAME': 'cvat',
-        'USER': 'root',
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', ''),
+        'HOST': os.getenv('POSTGRES_HOST'),
+        'NAME': os.getenv('POSTGRES_DB'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
     }
 }

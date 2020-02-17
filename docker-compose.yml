@@ -15,8 +15,8 @@ services:
           - db
     restart: always
     environment:
-      POSTGRES_USER: root
       POSTGRES_DB: cvat
+      POSTGRES_USER: root
     volumes:
       - cvat_db:/var/lib/postgresql/data
 
@@ -53,6 +53,10 @@ services:
         OPENVINO_TOOLKIT: "no"
     environment:
       DJANGO_MODWSGI_EXTRA_ARGS: ""
+      POSTGRES_HOST: cvat_db
+      POSTGRES_DB: cvat
+      POSTGRES_USER: root
+      REDIS_HOST: cvat_redis
       UI_SCHEME: http
       UI_HOST: localhost
       UI_PORT: 7080
