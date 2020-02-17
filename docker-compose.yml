@@ -16,7 +16,8 @@ services:
     restart: always
     environment:
       POSTGRES_DB: cvat
-      POSTGRES_USER: root
+      POSTGRES_USER: cvat
+      POSTGRES_PASSWORD: cvat
     volumes:
       - cvat_db:/var/lib/postgresql/data
 
@@ -55,7 +56,8 @@ services:
       DJANGO_MODWSGI_EXTRA_ARGS: ""
       POSTGRES_HOST: cvat_db
       POSTGRES_DB: cvat
-      POSTGRES_USER: root
+      POSTGRES_USER: cvat
+      POSTGRES_PASSWORD: cvat
       REDIS_HOST: cvat_redis
       UI_SCHEME: http
       UI_HOST: localhost
