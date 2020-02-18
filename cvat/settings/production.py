@@ -10,6 +10,8 @@ INSTALLED_APPS += [
     'mod_wsgi.server',
 ]
 
+ALLOWED_HOSTS.append(os.getenv('UI_HOST'))
+
 # dirty hack for k8s service discovery
 # https://kubernetes.io/docs/concepts/services-networking/service/#environment-variables
 for key in RQ_QUEUES:
