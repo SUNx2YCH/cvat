@@ -10,10 +10,12 @@ INSTALLED_APPS += [
     'mod_wsgi.server',
 ]
 
+# dirty hack for k8s service discovery
+# https://kubernetes.io/docs/concepts/services-networking/service/#environment-variables
 for key in RQ_QUEUES:
-    RQ_QUEUES[key]['HOST'] = os.getenv('REDIS_HOST')
+    RQ_QUEUES[key]['HOST'] = os.getenv('REDIS_SERVICE_HOST')
 
-CACHEOPS_REDIS['host'] = os.getenv('REDIS_HOST')
+CACHEOPS_REDIS['host'] = os.getenv('REDIS_SERVICE_HOST')
 
 # Django-sendfile:
 # https://github.com/johnsensible/django-sendfile
